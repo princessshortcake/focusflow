@@ -1,6 +1,6 @@
 # focusflow
 
-A new Flutter project.
+A new Flutter/Dart project. This is a pomodoro-based task manager app built by Mobile Application Programming students.
 
 ## Getting Started
 
