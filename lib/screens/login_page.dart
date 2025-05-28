@@ -1,142 +1,195 @@
-// lib/screens/login_page.dart
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      // stack lets us place the gradient behind everything
       body: Stack(
         children: [
-          // 1) background gradient
+          // Background gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xFFB39DDB), Color(0xFF7E57C2)],
+                colors: [
+                  Color.fromARGB(255, 248, 117, 117), // Coral pink
+                  Color.fromARGB(255, 122, 255, 255), // Mint green
+                ],
               ),
             ),
           ),
 
-          // 2) scrollable content
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width * .1,
-                vertical: 80,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // logo
-                  Image.asset('assets/focusflow_logo.png', height: 120),
-                  const SizedBox(height: 40),
+          // Scrollable content
+          Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Logo
+                    Image.asset('assets/focusflow_logo.png', height: 120),
+                    const SizedBox(height: 30),
 
-                  // Email field
-                  TextField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      hintStyle: TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.white.withValues(),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 16,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Password field
-                  TextField(
-                    style: const TextStyle(color: Colors.white),
-                    obscureText: _obscure,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      hintStyle: TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.white.withValues(),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 16,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscure ? Icons.visibility_off : Icons.visibility,
-                          color: Colors.white70,
-                        ),
-                        onPressed: () => setState(() => _obscure = !_obscure),
-                      ),
-                    ),
-                  ),
-
-                  // Forgot password (right aligned)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/forgot');
-                      },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Sign In button
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white70,
-                      foregroundColor: Colors.deepPurple,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 16,
+                    // App Title
+                    const Text(
+                      'FOCUS FLOW',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                        color: Colors.black87,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 4,
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
                     ),
-                    onPressed: () {},
-                    child: const Text('SIGN IN'),
-                  ),
 
-                  const SizedBox(height: 32),
+                    // Slogan
+                    const SizedBox(height: 8),
+                    const Text(
+                      'FOCUS SMARTER STUDY BETTER',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 13,
+                        letterSpacing: 1.2,
+                        color: Colors.black54,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 2,
+                            color: Colors.black12,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                    ),
 
-                  // Sign up link
-                  Center(
-                    child: TextButton(
+                    const SizedBox(height: 140),
+
+                    // Email field
+                    TextField(
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: const TextStyle(color: Colors.black54),
+                        hintText: 'example@email.com',
+                        hintStyle: const TextStyle(color: Colors.black38),
+                        filled: true,
+                        fillColor:
+                            const Color.fromARGB(0, 255, 255, 255).withValues(),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.black12),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Password field
+                    TextField(
+                      style: const TextStyle(color: Colors.black),
+                      obscureText: _obscure,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: const TextStyle(color: Colors.black54),
+                        hintText: 'Enter your password',
+                        hintStyle: const TextStyle(color: Colors.black38),
+                        filled: true,
+                        fillColor:
+                            const Color.fromARGB(0, 255, 255, 255).withValues(),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.black12),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscure ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.black45,
+                          ),
+                          onPressed: () {
+                            setState(() => _obscure = !_obscure);
+                          },
+                        ),
+                      ),
+                    ),
+
+                    // Forgot password link
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/forgot');
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Sign In button
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFF87575), // Coral pink
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        textStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        elevation: 4,
+                        shadowColor: Colors.black26,
+                      ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/register');
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
-                      child: const Text(
-                        "Don't have an account? Sign up",
-                        style: TextStyle(color: Colors.white),
+                      child: const Text('SIGN IN'),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Sign up link
+                    Center(
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
+                        child: const Text(
+                          "Don't have an account? Sign up",
+                          style: TextStyle(color: Colors.black87),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
